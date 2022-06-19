@@ -61,7 +61,7 @@ class LoginForm extends StatelessWidget {
                         funcHandler();
                       }
                     },
-                    child: const Text("Register"),
+                    child: const Text("Login"),
                   ),
                 ],
               ),
@@ -114,6 +114,5 @@ class LoginForm extends StatelessWidget {
         obscureText: true,
         maxLength: 100,
         maxLines: 1,
-        validator: ValidationBuilder().minLength(6).build(),
       );
 }

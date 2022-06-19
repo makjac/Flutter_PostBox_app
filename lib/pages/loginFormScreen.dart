@@ -1,11 +1,16 @@
 // ignore_for_file: file_names
 
+// ignore: library_prefixes
+import 'dart:convert' as JSON;
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:post_box/Forms/login_form/loginForm_base.dart';
 import 'package:post_box/graphic/appBars/startAppBar.dart';
-import 'customScroll.dart';
+import 'package:post_box/graphic/alerts/normalAlert.dart';
+import 'package:post_box/utils/userSharedPreferences.dart';
+import '../utils/customScroll.dart';
 
 class LoginFormPage extends StatefulWidget {
   const LoginFormPage({Key? key}) : super(key: key);
@@ -15,43 +20,14 @@ class LoginFormPage extends StatefulWidget {
 }
 
 class _LoginFormPageState extends State<LoginFormPage> {
-  final loginController = TextEditingController();
-  final passwdController = TextEditingController();
-
-  bool sh = false;
-  String s = 'siema';
-
-  void _login(String login, String passwd) async {
-    try {
-      final url = Uri.parse('http://makjac.pl:8080/login');
-      final response = await http.post(
-        url,
-        body: {'username': login, 'passwd': passwd},
-      );
-      // final jsonData = jsonDecode(response.body) as List;
-      // setState(() {
-      //   _postJson = jsonData;
-      // });
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(response.body),
-            );
-          });
-    } catch (err) {
-      return;
-    }
-  }
-
-  void _pushScreen() {
-    Navigator.pushNamed(context, '/register');
-  }
+  final _loginController = TextEditingController();
+  final _passwdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text('Login')),
+          title: const Text('Login'),
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           bottomOpacity: 0.0,
           elevation: 0.0,
@@ -81,12 +57,10 @@ class _LoginFormPageState extends State<LoginFormPage> {
                       child: Column(
                         children: [
                           LoginForm(
-                            loginController: loginController,
-                            passwdController: passwdController,
-                            funcHandler: () {
-                              _login(
-                                  loginController.text, passwdController.text);
-                            },
+                            loginController: _loginController,
+                            passwdController: _passwdController,
+                            funcHandler: () => _login(
+                                _loginController.text, _passwdController.text),
                             size: MediaQuery.of(context).size.width,
                           ),
                           loginFooter(_pushScreen),
@@ -101,4 +75,59 @@ class _LoginFormPageState extends State<LoginFormPage> {
           ],
         ),
       );
+
+  void _pushScreen() {
+    Navigator.pushNamed(context, '/register');
+  }
+
+  //Display allert
+  void _alert(String title, String body) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return normalAllert(
+            title,
+            body,
+          );
+        });
+  }
+
+  //Send login resquest and get JWT token
+  void _login(String login, String passwd) async {
+    try {
+      final url = Uri.parse('http://makjac.pl:8080/login');
+      final response = await http.post(
+        url,
+        body: {'username': login, 'passwd': passwd},
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          {
+            final data = JSON.jsonDecode(response.body);
+            await UserSharedPreferences.setToken(data["token"]);
+            Navigator.pushNamed(context, '/home');
+            break;
+          }
+        case 401:
+          {
+            _alert(
+              "Wrong data",
+              "Opps... Wrong login or password!",
+            );
+            break;
+          }
+        case 521:
+          {
+            _alert(
+              "Web server is down",
+              "Opps... No connection!",
+            );
+            break;
+          }
+      }
+    } catch (err) {
+      return;
+    }
+  }
 }
