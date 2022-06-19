@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:post_box/graphic/colors.dart';
 
 class RegisterForm extends StatelessWidget {
   RegisterForm({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class RegisterForm extends StatelessWidget {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.brown[700],
+                    primary: buttonFormColor,
                     minimumSize: const Size(200, 40),
                   ),
                   onPressed: () {
@@ -57,15 +58,15 @@ class RegisterForm extends StatelessWidget {
 
 BoxDecoration myBoxDecoration() {
   return BoxDecoration(
-    color: Colors.brown[200],
+    color: backgroundFormColor,
     borderRadius: BorderRadius.circular(20),
     border: Border.all(
       width: 4,
-      color: Colors.brown,
+      color: borderFormColor,
     ),
     boxShadow: const [
       BoxShadow(
-        color: Colors.brown,
+        color: shadowFormColor,
         blurRadius: 10,
       ),
     ],
@@ -74,7 +75,7 @@ BoxDecoration myBoxDecoration() {
 
 Widget buildFirstName() => TextFormField(
       decoration: const InputDecoration(
-        fillColor: Color.fromARGB(179, 255, 255, 255),
+        fillColor: textFieldsFormColor,
         filled: true,
         label: Text('First name'),
         prefixIcon: Icon(Icons.person),
@@ -88,7 +89,7 @@ Widget buildFirstName() => TextFormField(
 
 Widget buildLastName() => TextFormField(
       decoration: const InputDecoration(
-        fillColor: Color.fromARGB(179, 255, 255, 255),
+        fillColor: textFieldsFormColor,
         filled: true,
         label: Text('Last name'),
         prefixIcon: Icon(Icons.person),
@@ -101,7 +102,7 @@ Widget buildLastName() => TextFormField(
 
 Widget buildPhone() => TextFormField(
       decoration: const InputDecoration(
-        fillColor: Color.fromARGB(179, 255, 255, 255),
+        fillColor: textFieldsFormColor,
         filled: true,
         label: Text('Phone number'),
         prefixIcon: Icon(Icons.phone),
@@ -115,7 +116,7 @@ Widget buildPhone() => TextFormField(
 
 Widget buildEmail() => TextFormField(
       decoration: const InputDecoration(
-        fillColor: Color.fromARGB(179, 255, 255, 255),
+        fillColor: textFieldsFormColor,
         filled: true,
         label: Text('Email'),
         hintText: 'name@example.com',
@@ -130,7 +131,7 @@ Widget buildEmail() => TextFormField(
 
 Widget buildLogin() => TextFormField(
       decoration: const InputDecoration(
-        fillColor: Color.fromARGB(179, 255, 255, 255),
+        fillColor: textFieldsFormColor,
         filled: true,
         label: Text('Login'),
         prefixIcon: Icon(Icons.login),
@@ -143,7 +144,7 @@ Widget buildLogin() => TextFormField(
 
 Widget buildPasswd() => TextFormField(
       decoration: const InputDecoration(
-        fillColor: Color.fromARGB(179, 255, 255, 255),
+        fillColor: textFieldsFormColor,
         filled: true,
         label: Text('Password'),
         prefixIcon: Icon(Icons.password),

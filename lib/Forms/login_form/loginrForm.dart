@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:post_box/graphic/colors.dart';
 
 class LoginForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -51,10 +52,9 @@ class LoginForm extends StatelessWidget {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.brown[700],
+                      primary: buttonFormColor,
                       minimumSize: const Size(200, 40),
                     ),
-                    //onPressed: funcHandler,
                     onPressed: () {
                       final isValid = _formKey.currentState!.validate();
                       if (isValid) {
@@ -72,15 +72,15 @@ class LoginForm extends StatelessWidget {
 
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
-      color: Colors.brown[200],
+      color: backgroundFormColor,
       borderRadius: BorderRadius.circular(20),
       border: Border.all(
         width: 4,
-        color: Colors.brown,
+        color: borderFormColor,
       ),
       boxShadow: const [
         BoxShadow(
-          color: Colors.brown,
+          color: shadowFormColor,
           blurRadius: 10,
         ),
       ],
@@ -89,7 +89,7 @@ class LoginForm extends StatelessWidget {
 
   Widget buildLogin() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: Color.fromARGB(179, 255, 255, 255),
+          fillColor: textFieldsFormColor,
           filled: true,
           label: Text('Login'),
           prefixIcon: Icon(Icons.login),
@@ -103,7 +103,7 @@ class LoginForm extends StatelessWidget {
 
   Widget buildPasswd() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: Color.fromARGB(179, 255, 255, 255),
+          fillColor: textFieldsFormColor,
           filled: true,
           label: Text('Password'),
           prefixIcon: Icon(Icons.password),

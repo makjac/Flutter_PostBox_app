@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:post_box/graphic/colors.dart';
 
 Widget loginFooter(VoidCallback funcHandler) {
   return Row(
@@ -13,7 +14,7 @@ Widget loginFooter(VoidCallback funcHandler) {
           child: const Text(
             'Register',
             style: TextStyle(
-              color: Color.fromARGB(255, 166, 99, 35),
+              color: textButtonColor,
             ),
           )),
     ],

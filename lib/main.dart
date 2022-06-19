@@ -6,8 +6,9 @@ void main() {
   runApp(MaterialApp(
     title: 'PostBox',
     //home: MyApp(),
-    initialRoute: '/login',
+    initialRoute: '/',
     routes: {
+      '/': (context) => const StartScreen(),
       '/login': (context) => const LoginFormPage(),
       '/register': (context) => const RegisterFormPage(),
     },
