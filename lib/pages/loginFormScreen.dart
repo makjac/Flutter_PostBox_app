@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:post_box/Forms/login_form/registerForm_base.dart';
 import 'package:post_box/graphic/appBars/startAppBar.dart';
+import 'customScroll.dart';
 
 class LoginFormPage extends StatefulWidget {
   const LoginFormPage({Key? key}) : super(key: key);
@@ -64,6 +65,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
         ),
         backgroundColor: const Color.fromARGB(255, 242, 221, 202),
         body: CustomScrollView(
+          scrollBehavior: MyBehavior(),
           slivers: [
             SliverPersistentHeader(
               delegate: SliverStartAppBar(),
@@ -74,23 +76,21 @@ class _LoginFormPageState extends State<LoginFormPage> {
                 (BuildContext context, int index) {
                   return Center(
                     heightFactor: 1.5,
-                    child: SingleChildScrollView(
-                      child: SizedBox(
-                        height: 391,
-                        child: Column(
-                          children: [
-                            LoginForm(
-                              loginController: loginController,
-                              passwdController: passwdController,
-                              funcHandler: () {
-                                _login(loginController.text,
-                                    passwdController.text);
-                              },
-                              size: MediaQuery.of(context).size.width,
-                            ),
-                            loginFooter(_pushScreen),
-                          ],
-                        ),
+                    child: SizedBox(
+                      height: 391,
+                      child: Column(
+                        children: [
+                          LoginForm(
+                            loginController: loginController,
+                            passwdController: passwdController,
+                            funcHandler: () {
+                              _login(
+                                  loginController.text, passwdController.text);
+                            },
+                            size: MediaQuery.of(context).size.width,
+                          ),
+                          loginFooter(_pushScreen),
+                        ],
                       ),
                     ),
                   );

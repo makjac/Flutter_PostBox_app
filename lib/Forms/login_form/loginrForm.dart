@@ -8,7 +8,7 @@ class LoginForm extends StatelessWidget {
   final TextEditingController loginController;
   final TextEditingController passwdController;
   final VoidCallback funcHandler;
-  double size;
+  final double size;
 
   LoginForm(
       {required this.loginController,

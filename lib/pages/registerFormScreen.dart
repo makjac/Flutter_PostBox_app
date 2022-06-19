@@ -1,9 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:post_box/Forms/register_form/registerForm_base.dart';
 
+import 'package:post_box/Forms/register_form/registerForm_base.dart';
 import 'package:post_box/graphic/appBars/startAppBar.dart';
+import 'customScroll.dart';
 
 class RegisterFormPage extends StatefulWidget {
   const RegisterFormPage({Key? key}) : super(key: key);
@@ -34,6 +35,7 @@ class _RegisterFormPageState extends State<RegisterFormPage> {
         ),
         backgroundColor: const Color.fromARGB(255, 242, 221, 202),
         body: CustomScrollView(
+          scrollBehavior: MyBehavior(),
           slivers: [
             SliverPersistentHeader(
               delegate: SliverStartAppBar(),
