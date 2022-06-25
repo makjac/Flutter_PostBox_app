@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:post_box/Forms/register_form/registerForm_base.dart';
+import 'package:post_box/constans/strings.dart';
 import 'package:post_box/graphic/appBars/startAppBar.dart';
 import 'package:post_box/graphic/alerts/normalAlert.dart';
 import '../utils/customScroll.dart';
 
-class RegisterFormPage extends StatefulWidget {
-  const RegisterFormPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<RegisterFormPage> createState() => _RegisterFormPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterFormPageState extends State<RegisterFormPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _loginController = TextEditingController();
   final _passwdController = TextEditingController();
   final _nameController = TextEditingController();
@@ -88,7 +89,7 @@ class _RegisterFormPageState extends State<RegisterFormPage> {
   }
 
   void _pushScreen() {
-    Navigator.pushNamed(context, '/login');
+    Navigator.pushNamed(context, LOGIN_ROUTE);
   }
 
   void _register() async {

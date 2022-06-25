@@ -2,23 +2,11 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:post_box/graphic/colors.dart';
+import 'package:post_box/constans/colors.dart';
+import 'package:post_box/constans/strings.dart';
 
-class StartScreen extends StatefulWidget {
+class StartScreen extends StatelessWidget {
   const StartScreen({Key? key}) : super(key: key);
-
-  @override
-  State<StartScreen> createState() => _StartScreenState();
-}
-
-class _StartScreenState extends State<StartScreen> {
-  void _pushLoginScreen() {
-    Navigator.pushNamed(context, '/login');
-  }
-
-  void _pushRegisterScreen() {
-    Navigator.pushNamed(context, '/register');
-  }
 
   @override
   Widget build(BuildContext context) => Container(
@@ -26,37 +14,36 @@ class _StartScreenState extends State<StartScreen> {
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [darkGradnientColor, lightGradnientColor]),
+              colors: [DARK_GRADIENT_COLOR, LIGHT_GRADIENT_COLOR]),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             logo(),
             const SizedBox(height: 55),
-            startForm(_pushLoginScreen, _pushRegisterScreen),
+            startForm(context),
           ],
         ),
       );
 }
 
-Widget startForm(VoidCallback loginHandler, VoidCallback registerHandler) =>
-    Column(
+Widget startForm(BuildContext context) => Column(
       children: <Widget>[
         ElevatedButton(
-          onPressed: loginHandler,
+          onPressed: () => Navigator.pushNamed(context, LOGIN_ROUTE),
           child: const Text('Login'),
           style: ElevatedButton.styleFrom(
-            primary: buttonFormColor,
+            primary: BUTTON_FORM_COLOR,
             minimumSize: const Size(200, 40),
           ),
         ),
         const SizedBox(height: 10),
         OutlinedButton(
-          onPressed: registerHandler,
+          onPressed: () => Navigator.pushNamed(context, REGISTER_ROUTE),
           child: const Text('Register'),
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: buttonFormColor, width: 2),
-            primary: buttonFormColor,
+            side: const BorderSide(color: BUTTON_FORM_COLOR, width: 2),
+            primary: BUTTON_FORM_COLOR,
             minimumSize: const Size(200, 40),
           ),
         )
@@ -71,7 +58,7 @@ Widget logo() => Container(
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: shadowFormColor,
+            color: SHADOW_FORM_COLOR,
             blurRadius: 10,
           ),
         ],

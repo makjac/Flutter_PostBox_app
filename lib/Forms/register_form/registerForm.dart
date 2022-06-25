@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:post_box/graphic/colors.dart';
+import 'package:post_box/constans/colors.dart';
 
 class RegisterForm extends StatelessWidget {
   final TextEditingController loginController;
@@ -69,7 +69,7 @@ class RegisterForm extends StatelessWidget {
                 const SizedBox(height: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: buttonFormColor,
+                    primary: BUTTON_FORM_COLOR,
                     minimumSize: const Size(200, 40),
                   ),
                   onPressed: () {
@@ -88,7 +88,7 @@ class RegisterForm extends StatelessWidget {
 
   Widget buildFirstName() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('First name'),
           prefixIcon: Icon(Icons.person),
@@ -103,7 +103,7 @@ class RegisterForm extends StatelessWidget {
 
   Widget buildLastName() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('Last name'),
           prefixIcon: Icon(Icons.person),
@@ -117,7 +117,7 @@ class RegisterForm extends StatelessWidget {
 
   Widget buildPhone() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('Phone number'),
           prefixIcon: Icon(Icons.phone),
@@ -132,7 +132,7 @@ class RegisterForm extends StatelessWidget {
 
   Widget buildEmail() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('Email'),
           hintText: 'name@example.com',
@@ -148,7 +148,7 @@ class RegisterForm extends StatelessWidget {
 
   Widget buildLogin() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('Login'),
           prefixIcon: Icon(Icons.login),
@@ -162,7 +162,7 @@ class RegisterForm extends StatelessWidget {
 
   Widget buildPasswd() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('Password'),
           prefixIcon: Icon(Icons.password),
@@ -179,15 +179,15 @@ class RegisterForm extends StatelessWidget {
 
 BoxDecoration myBoxDecoration() {
   return BoxDecoration(
-    color: backgroundFormColor,
+    color: BACKGROUND_FORM_COLOR,
     borderRadius: BorderRadius.circular(20),
     border: Border.all(
       width: 4,
-      color: borderFormColor,
+      color: BORDER_FORM_COLOR,
     ),
     boxShadow: const [
       BoxShadow(
-        color: shadowFormColor,
+        color: SHADOW_FORM_COLOR,
         blurRadius: 10,
       ),
     ],

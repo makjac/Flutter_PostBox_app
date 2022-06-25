@@ -7,19 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:post_box/Forms/login_form/loginForm_base.dart';
+import 'package:post_box/constans/strings.dart';
 import 'package:post_box/graphic/appBars/startAppBar.dart';
 import 'package:post_box/graphic/alerts/normalAlert.dart';
 import 'package:post_box/utils/userSharedPreferences.dart';
 import '../utils/customScroll.dart';
 
-class LoginFormPage extends StatefulWidget {
-  const LoginFormPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginFormPage> createState() => _LoginFormPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginFormPageState extends State<LoginFormPage> {
+class _LoginPageState extends State<LoginPage> {
   final _loginController = TextEditingController();
   final _passwdController = TextEditingController();
 
@@ -77,7 +78,7 @@ class _LoginFormPageState extends State<LoginFormPage> {
       );
 
   void _pushScreen() {
-    Navigator.pushNamed(context, '/register');
+    Navigator.pushNamed(context, REGISTER_ROUTE);
   }
 
   //Display allert
@@ -106,7 +107,8 @@ class _LoginFormPageState extends State<LoginFormPage> {
           {
             final data = JSON.jsonDecode(response.body);
             await UserSharedPreferences.setToken(data["token"]);
-            Navigator.pushNamed(context, '/home');
+            Navigator.pushNamedAndRemoveUntil(
+                context, PROFILE_ROUTE, (Route<dynamic> route) => false);
             break;
           }
         case 401:

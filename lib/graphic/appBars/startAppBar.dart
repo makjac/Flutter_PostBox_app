@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:post_box/graphic/clipers/startClipper.dart';
-import 'package:post_box/graphic/colors.dart';
+import 'package:post_box/constans/colors.dart';
 
 class SliverStartAppBar extends SliverPersistentHeaderDelegate {
   @override
@@ -17,7 +17,7 @@ class SliverStartAppBar extends SliverPersistentHeaderDelegate {
           height: 60,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [darkGradnientColor, lightGradnientColor],
+              colors: [DARK_GRADIENT_COLOR, LIGHT_GRADIENT_COLOR],
             ),
           ),
         ),

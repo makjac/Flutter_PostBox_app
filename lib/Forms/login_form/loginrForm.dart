@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:post_box/graphic/colors.dart';
+import 'package:post_box/constans/colors.dart';
 
 class LoginForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -52,7 +52,7 @@ class LoginForm extends StatelessWidget {
                   const SizedBox(height: 10),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: buttonFormColor,
+                      primary: BUTTON_FORM_COLOR,
                       minimumSize: const Size(200, 40),
                     ),
                     onPressed: () {
@@ -72,15 +72,15 @@ class LoginForm extends StatelessWidget {
 
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
-      color: backgroundFormColor,
+      color: BACKGROUND_FORM_COLOR,
       borderRadius: BorderRadius.circular(20),
       border: Border.all(
         width: 4,
-        color: borderFormColor,
+        color: BORDER_FORM_COLOR,
       ),
       boxShadow: const [
         BoxShadow(
-          color: shadowFormColor,
+          color: SHADOW_FORM_COLOR,
           blurRadius: 10,
         ),
       ],
@@ -89,7 +89,7 @@ class LoginForm extends StatelessWidget {
 
   Widget buildLogin() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('Login'),
           prefixIcon: Icon(Icons.login),
@@ -103,7 +103,7 @@ class LoginForm extends StatelessWidget {
 
   Widget buildPasswd() => TextFormField(
         decoration: const InputDecoration(
-          fillColor: textFieldsFormColor,
+          fillColor: TEXT_FIELDS_FORM_COLOR,
           filled: true,
           label: Text('Password'),
           prefixIcon: Icon(Icons.password),

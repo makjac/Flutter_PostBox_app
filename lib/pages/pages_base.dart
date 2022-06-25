@@ -1,4 +1,4 @@
-export 'loginFormScreen.dart';
-export 'registerFormScreen.dart';
+export 'loginScreen.dart';
+export 'registerScreen.dart';
 export 'startScreen.dart';
-export 'homeScreen.dart';
+export 'ProfileSreen.dart';
