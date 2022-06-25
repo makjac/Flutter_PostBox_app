@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:post_box/cubit/showcase_cubit.dart';
 
 import 'package:post_box/data/models/userShowcase.dart';
+import 'package:post_box/graphic/templates/page_template.dart';
 
 // ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
@@ -17,22 +18,8 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<ShowcaseCubit>(context).fetchShowcase();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        bottomOpacity: 0.0,
-        elevation: 0.0,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFFE0852F), Color(0xFFE6AB75)],
-            ),
-          ),
-        ),
-      ),
-      backgroundColor: const Color.fromARGB(255, 242, 221, 202),
+    return PageTemplate(
+      title: "Profile",
       body: BlocBuilder<ShowcaseCubit, ShowcaseState>(
         builder: (context, state) {
           if (state is! ShowcaseLoaded) {

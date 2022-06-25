@@ -7,6 +7,7 @@ import 'package:post_box/Forms/register_form/registerForm_base.dart';
 import 'package:post_box/constans/strings.dart';
 import 'package:post_box/graphic/appBars/startAppBar.dart';
 import 'package:post_box/graphic/alerts/normalAlert.dart';
+import 'package:post_box/graphic/templates/page_template.dart';
 import '../utils/customScroll.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -25,22 +26,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Register'),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          bottomOpacity: 0.0,
-          elevation: 0.0,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Color(0xFFE0852F), Color(0xFFE6AB75)],
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 242, 221, 202),
+  Widget build(BuildContext context) => PageTemplate(
+        title: "Regiser",
         body: CustomScrollView(
           scrollBehavior: MyBehavior(),
           slivers: [
