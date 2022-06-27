@@ -1,3 +1,4 @@
+import 'package:post_box/data/models/register_model.dart';
 import 'package:post_box/data/models/userShowcase.dart';
 import 'package:post_box/data/network_service.dart';
 
@@ -18,6 +19,21 @@ class Repository {
     int status = 0;
     await networkService.loginUser(loginObj).then((res) => status = res);
 
+    return status;
+  }
+
+  Future<int> registerUser(RegisterModel form) async {
+    final registerObj = {
+      "Login": form.login,
+      "Passwd": form.passwd,
+      "Name": form.name,
+      "Surname": form.surname,
+      "Phone": form.phone,
+      "Email": form.email
+    };
+
+    int status = 0;
+    await networkService.registerUser(registerObj).then((res) => status = res);
     return status;
   }
 }

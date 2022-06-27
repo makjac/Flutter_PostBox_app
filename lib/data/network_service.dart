@@ -37,4 +37,16 @@ class NetworkService {
       return 0;
     }
   }
+
+  Future<int> registerUser(Map<String, String> registerObj) async {
+    try {
+      //print(registerObj["Name"]);
+      final response =
+          await http.get(Uri.http("makjac.pl:8080", "/register", registerObj));
+
+      return response.statusCode;
+    } catch (e) {
+      return 0;
+    }
+  }
 }

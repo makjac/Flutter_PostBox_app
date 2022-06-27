@@ -1,30 +1,22 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:post_box/constans/colors.dart';
+import 'package:post_box/cubit/register_cubit.dart';
+import 'package:post_box/data/models/register_model.dart';
 
 class RegisterForm extends StatelessWidget {
-  final TextEditingController loginController;
-  final TextEditingController passwdController;
-  final TextEditingController nameController;
-  final TextEditingController surnameController;
-  final TextEditingController phoneController;
-  final TextEditingController emailController;
-  final VoidCallback funcHandler;
+  final loginController = TextEditingController();
+  final passwdController = TextEditingController();
+  final nameController = TextEditingController();
+  final surnameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final emailController = TextEditingController();
   final double size;
 
-  RegisterForm(
-      {required this.loginController,
-      required this.passwdController,
-      required this.nameController,
-      required this.surnameController,
-      required this.phoneController,
-      required this.emailController,
-      required this.funcHandler,
-      this.size = 0,
-      Key? key})
-      : super(key: key);
+  RegisterForm({this.size = 0, Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
 
@@ -67,19 +59,23 @@ class RegisterForm extends StatelessWidget {
                 const SizedBox(height: 15),
                 buildPasswd(),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: BUTTON_FORM_COLOR,
-                    minimumSize: const Size(200, 40),
-                  ),
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     final isValid = _formKey.currentState!.validate();
                     if (isValid) {
-                      funcHandler();
+                      BlocProvider.of<RegisterCubit>(context)
+                          .RegisterUser(RegisterModel(
+                        login: loginController.text,
+                        passwd: passwdController.text,
+                        name: nameController.text,
+                        surname: surnameController.text,
+                        phone: phoneController.text,
+                        email: emailController.text,
+                      ));
                     }
                   },
-                  child: const Text("Register"),
-                ),
+                  child: _addBut(),
+                )
               ],
             ),
           ),
@@ -94,8 +90,8 @@ class RegisterForm extends StatelessWidget {
           prefixIcon: Icon(Icons.person),
           border: OutlineInputBorder(),
         ),
+        controller: nameController,
         keyboardType: TextInputType.name,
-        //controller: nameController,
         maxLength: 30,
         maxLines: 1,
         validator: ValidationBuilder().minLength(2).build(),
@@ -174,6 +170,25 @@ class RegisterForm extends StatelessWidget {
         maxLength: 100,
         maxLines: 1,
         validator: ValidationBuilder().minLength(6).build(),
+      );
+
+  Widget _addBut() => Container(
+        height: 40,
+        width: 200,
+        decoration: BoxDecoration(
+          color: BUTTON_FORM_COLOR,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(child: BlocBuilder<RegisterCubit, RegisterState>(
+          builder: ((context, state) {
+            if (state is ProcessingRegister) {
+              return CircularProgressIndicator(color: Colors.brown[100]);
+            }
+            return const Text("Register",
+                style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold));
+          }),
+        )),
       );
 }
 

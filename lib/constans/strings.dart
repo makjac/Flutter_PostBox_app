@@ -2,5 +2,5 @@
 
 const START_ROUTE = "/";
 const LOGIN_ROUTE = "/login";
-const REGISTER_ROUTE = "/Register";
+const REGISTER_ROUTE = "/register";
 const PROFILE_ROUTE = "/home";
