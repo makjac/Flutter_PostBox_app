@@ -11,4 +11,13 @@ class Repository {
 
     return showcaseRaw.map((e) => UserShowcase.fromMap(e)).toList();
   }
+
+  Future<int> loginUser(String login, String passwd) async {
+    final loginObj = {'username': login, 'passwd': passwd};
+
+    int status = 0;
+    await networkService.loginUser(loginObj).then((res) => status = res);
+
+    return status;
+  }
 }

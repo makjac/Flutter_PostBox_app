@@ -2,15 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:post_box/constans/colors.dart';
+import 'package:post_box/constans/strings.dart';
 
-Widget loginFooter(VoidCallback funcHandler) {
+Widget loginFooter(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: <Widget>[
       const Text('Don\'t have an account?'),
       TextButton(
-          onPressed: funcHandler,
+          onPressed: () => Navigator.pushNamed(context, REGISTER_ROUTE),
           child: const Text(
             'Register',
             style: TextStyle(

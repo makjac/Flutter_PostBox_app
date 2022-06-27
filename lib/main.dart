@@ -12,17 +12,6 @@ Future<void> main() async {
   runApp(PostBoxApp(
     router: AppRouter(),
   ));
-
-  // runApp(MaterialApp(
-  //   title: 'PostBox',
-  //   initialRoute: '/welcome',
-  //   routes: {
-  //     '/welcome': (context) => const StartScreen(),
-  //     '/login': (context) => const LoginFormPage(),
-  //     '/register': (context) => const RegisterFormPage(),
-  //     '/home': (context) => const HomePage(),
-  //   },
-  // ));
 }
 
 class PostBoxApp extends StatelessWidget {

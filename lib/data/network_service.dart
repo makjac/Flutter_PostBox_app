@@ -23,4 +23,18 @@ class NetworkService {
     }
     return [];
   }
+
+  Future<int> loginUser(Map<String, String> loginObj) async {
+    try {
+      final response =
+          await http.post(Uri.parse(_baseUrl + "/login"), body: loginObj);
+
+      final data = jsonDecode(response.body);
+      await UserSharedPreferences.setToken(data["token"]);
+      return response.statusCode;
+    } catch (e) {
+      await UserSharedPreferences.setToken("");
+      return 0;
+    }
+  }
 }

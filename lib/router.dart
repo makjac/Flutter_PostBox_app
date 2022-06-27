@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:post_box/cubit/login_cubit.dart';
 import 'package:post_box/data/network_service.dart';
 import 'package:post_box/pages/pages_base.dart';
 import 'package:post_box/constans/strings.dart';
@@ -18,7 +19,12 @@ class AppRouter {
       case START_ROUTE:
         return MaterialPageRoute(builder: (_) => const StartScreen());
       case LOGIN_ROUTE:
-        return MaterialPageRoute(builder: (_) => const LoginPage());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (BuildContext context) =>
+                      LoginCubit(repository: repository!),
+                  child: const LoginPage(),
+                ));
       case REGISTER_ROUTE:
         return MaterialPageRoute(builder: (_) => const RegisterPage());
       case PROFILE_ROUTE:
