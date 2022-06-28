@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:post_box/cubit/incoming_parcels_cubit.dart';
 import 'package:post_box/cubit/login_cubit.dart';
 import 'package:post_box/cubit/register_cubit.dart';
+import 'package:post_box/cubit/sending_parcel_cubit.dart';
 import 'package:post_box/data/network_service.dart';
 import 'package:post_box/pages/editProfileScreen.dart';
 import 'package:post_box/pages/homeScreen.dart';

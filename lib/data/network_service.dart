@@ -69,4 +69,22 @@ class NetworkService {
     }
     return [];
   }
+
+  Future<List<dynamic>> fetchSendingParcels() async {
+    try {
+      final token = UserSharedPreferences.getToken();
+
+      final response =
+          await http.get(Uri.parse(_baseUrl + "/api/parcels/send"), headers: {
+        'Authorization': 'Bearer $token',
+      });
+      final res = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return res["data"];
+      }
+    } catch (e) {
+      return [];
+    }
+    return [];
+  }
 }

@@ -7,46 +7,73 @@ import 'package:post_box/constans/colors.dart';
 import 'package:post_box/cubit/incoming_parcels_cubit.dart';
 import 'package:post_box/data/models/parcel_showcase.dart';
 import 'package:post_box/graphic/templates/home_page_template.dart';
-import 'package:post_box/graphic/templates/logged_page_template.dart';
-import 'package:post_box/graphic/templates/page_template.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<IncomingParcelsCubit>(context).fetchIncomingParcels();
+    BlocProvider.of<IncomingParcelsCubit>(context).fetchParcels();
+    //BlocProvider.of<IncomingParcelsCubit>(context).fetchSendingParcels();
 
     return HomePageTemplate(
       title: "Post Box",
       body: [
-        BlocBuilder<IncomingParcelsCubit, IncomingParcelsState>(
-          builder: (context, state) {
-            if (state is! IncomParcelsLoaded) {
-              return Center(
-                child: CircularProgressIndicator(color: Colors.brown[300]),
-              );
-            }
-
-            final parcelSchowcase = (state).parcelSchowcase;
-
-            if (!(parcelSchowcase == null)) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: parcelSchowcase
-                      .map((e) => _incomParcels(e, context))
-                      .toList(),
-                ),
-              );
-            } else {
-              return Container();
-            }
-          },
-        ),
-        Container(),
+        incomingPage(),
+        sendingPage(),
       ],
     );
   }
+
+  Widget incomingPage() =>
+      BlocBuilder<IncomingParcelsCubit, IncomingParcelsState>(
+        builder: (context, state) {
+          if (state is! ParcelsLoaded) {
+            return Center(
+              child: CircularProgressIndicator(color: Colors.brown[300]),
+            );
+          }
+
+          final incomParcelSchowcase = (state).incomParcelSchowcase;
+
+          if (!(incomParcelSchowcase == null)) {
+            return SingleChildScrollView(
+              child: Column(
+                children: incomParcelSchowcase
+                    .map((e) => _incomParcels(e, context))
+                    .toList(),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
+
+  Widget sendingPage() =>
+      BlocBuilder<IncomingParcelsCubit, IncomingParcelsState>(
+        builder: (context, state) {
+          if (state is! ParcelsLoaded) {
+            return Center(
+              child: CircularProgressIndicator(color: Colors.brown[300]),
+            );
+          }
+
+          final sendParcelSchowcase = (state).sendParcelSchowcase;
+
+          if (!(sendParcelSchowcase == null)) {
+            return SingleChildScrollView(
+              child: Column(
+                children: sendParcelSchowcase
+                    .map((e) => _incomParcels(e, context))
+                    .toList(),
+              ),
+            );
+          } else {
+            return Container();
+          }
+        },
+      );
 
   Widget _incomParcels(ParcelShowcase parcel, BuildContext context) {
     return Column(

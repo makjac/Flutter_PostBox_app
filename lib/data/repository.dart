@@ -45,4 +45,10 @@ class Repository {
 
     return incomParcelsRaw.map((e) => ParcelShowcase.fromMap(e)).toList();
   }
+
+  Future<List<ParcelShowcase>> fetchSendingParcels() async {
+    final incomParcelsRaw = await networkService.fetchSendingParcels();
+
+    return incomParcelsRaw.map((e) => ParcelShowcase.fromMap(e)).toList();
+  }
 }

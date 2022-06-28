@@ -18,4 +18,19 @@ class IncomingParcelsCubit extends Cubit<IncomingParcelsState> {
       emit(IncomParcelsLoaded(parcelSchowcase: parcels));
     });
   }
+
+  void fetchParcels() {
+    repository.fetchIncomingParcels().then((incom) {
+      repository.fetchSendingParcels().then((send) {
+        emit(ParcelsLoaded(
+            incomParcelSchowcase: incom, sendParcelSchowcase: send));
+      });
+    });
+  }
+
+  void fetchSendingParcels() {
+    repository.fetchSendingParcels().then((parcels) {
+      emit(SendParcelsLoaded(sendParcelSchowcase: parcels));
+    });
+  }
 }

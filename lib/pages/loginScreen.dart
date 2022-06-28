@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                               if (state is Logged) {
                                 Navigator.pushNamedAndRemoveUntil(
                                     context,
-                                    PROFILE_ROUTE,
+                                    HOME_ROUTE,
                                     (Route<dynamic> route) => false);
                               }
                               if (state is InvalidResponse) {
