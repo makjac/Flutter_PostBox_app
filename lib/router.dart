@@ -4,6 +4,7 @@ import 'package:post_box/cubit/login_cubit.dart';
 import 'package:post_box/cubit/register_cubit.dart';
 import 'package:post_box/data/network_service.dart';
 import 'package:post_box/pages/editProfileScreen.dart';
+import 'package:post_box/pages/homeScreen.dart';
 import 'package:post_box/pages/pages_base.dart';
 import 'package:post_box/constans/strings.dart';
 import 'package:post_box/cubit/showcase_cubit.dart';
@@ -20,6 +21,8 @@ class AppRouter {
     switch (settings.name) {
       case START_ROUTE:
         return MaterialPageRoute(builder: (_) => const StartScreen());
+      case HOME_ROUTE:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case LOGIN_ROUTE:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(

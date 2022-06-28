@@ -61,7 +61,7 @@ Widget _showcase(UserShowcase showcase, context) {
   return Column(
     children: [
       _header(showcase.login!),
-      const SizedBox(height: 35),
+      const SizedBox(height: 25),
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: listDecoration(),

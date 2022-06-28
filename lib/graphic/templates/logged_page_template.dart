@@ -40,7 +40,15 @@ class LoggedPageTemplate extends StatelessWidget {
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/def_avatar.png'),
               ),
-              decoration: BoxDecoration(color: DARK_GRADIENT_COLOR),
+              //decoration: BoxDecoration(color: DARK_GRADIENT_COLOR),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [DARK_GRADIENT_COLOR, LIGHT_GRADIENT_COLOR])),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text("Home"),
+              onTap: () => Navigator.pushNamed(context, HOME_ROUTE),
             ),
             ListTile(
               leading: const Icon(Icons.person),
