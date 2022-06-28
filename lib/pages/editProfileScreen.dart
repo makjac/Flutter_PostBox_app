@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:post_box/graphic/graphic_base.dart';
+import 'package:post_box/graphic/templates/logged_page_template.dart';
 import 'package:post_box/graphic/templates/page_template.dart';
 import 'package:post_box/utils/utils_base.dart';
 
@@ -7,8 +8,8 @@ class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => PageTemplate(
-        title: "Login",
+  Widget build(BuildContext context) => LoggedPageTemplate(
+        title: "Edit profile",
         body: CustomScrollView(
           scrollBehavior: MyBehavior(),
           slivers: [

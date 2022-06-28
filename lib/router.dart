@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:post_box/cubit/incoming_parcels_cubit.dart';
 import 'package:post_box/cubit/login_cubit.dart';
 import 'package:post_box/cubit/register_cubit.dart';
 import 'package:post_box/data/network_service.dart';
@@ -21,8 +22,15 @@ class AppRouter {
     switch (settings.name) {
       case START_ROUTE:
         return MaterialPageRoute(builder: (_) => const StartScreen());
+
       case HOME_ROUTE:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (BuildContext context) =>
+                      IncomingParcelsCubit(repository: repository!),
+                  child: const HomeScreen(),
+                ));
+
       case LOGIN_ROUTE:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
@@ -30,6 +38,7 @@ class AppRouter {
                       LoginCubit(repository: repository!),
                   child: const LoginPage(),
                 ));
+
       case REGISTER_ROUTE:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
@@ -37,6 +46,7 @@ class AppRouter {
                       RegisterCubit(repository: repository!),
                   child: const RegisterPage(),
                 ));
+
       case PROFILE_ROUTE:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
@@ -44,6 +54,7 @@ class AppRouter {
                       ShowcaseCubit(repository: repository!),
                   child: ProfilePage(),
                 ));
+
       case EDIT_PROFILE_ROUTE:
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       default:

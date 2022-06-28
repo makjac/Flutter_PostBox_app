@@ -15,6 +15,7 @@ class LoggedPageTemplate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final login = UserSharedPreferences.getLogin();
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -34,14 +35,15 @@ class LoggedPageTemplate extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const UserAccountsDrawerHeader(
-              accountName: Text("zaba", style: TextStyle(fontSize: 20)),
+            UserAccountsDrawerHeader(
+              accountName: Text(UserSharedPreferences.getLogin().toString(),
+                  style: const TextStyle(fontSize: 20)),
               accountEmail: null,
-              currentAccountPicture: CircleAvatar(
+              currentAccountPicture: const CircleAvatar(
                 backgroundImage: AssetImage('assets/images/def_avatar.png'),
               ),
               //decoration: BoxDecoration(color: DARK_GRADIENT_COLOR),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       colors: [DARK_GRADIENT_COLOR, LIGHT_GRADIENT_COLOR])),
             ),
