@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:post_box/data/repository.dart';
+import 'package:post_box/utils/userSharedPreferences.dart';
 
 part 'login_state.dart';
 
@@ -18,6 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
     repository.loginUser(login, passwd).then((status) {
       switch (status) {
         case 200:
+          UserSharedPreferences.setLogin(login);
           emit(Logged());
           break;
         case 401:

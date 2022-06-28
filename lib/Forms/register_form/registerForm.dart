@@ -30,57 +30,58 @@ class RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-      width: formSize(),
-      child: Container(
-        decoration: myBoxDecoration(),
-        margin: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
-        child: Form(
-          autovalidateMode: AutovalidateMode.disabled,
-          key: _formKey,
-          child: Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 30,
-            ),
-            child: Column(
-              children: <Widget>[
-                buildFirstName(),
-                const SizedBox(height: 15),
-                buildLastName(),
-                const SizedBox(height: 15),
-                buildPhone(),
-                const SizedBox(height: 15),
-                buildEmail(),
-                const SizedBox(height: 15),
-                buildLogin(),
-                const SizedBox(height: 15),
-                buildPasswd(),
-                const SizedBox(height: 10),
-                InkWell(
-                  onTap: () {
-                    final isValid = _formKey.currentState!.validate();
-                    if (isValid) {
-                      BlocProvider.of<RegisterCubit>(context)
-                          .RegisterUser(RegisterModel(
-                        login: loginController.text,
-                        passwd: passwdController.text,
-                        name: nameController.text,
-                        surname: surnameController.text,
-                        phone: phoneController.text,
-                        email: emailController.text,
-                      ));
-                    }
-                  },
-                  child: _addBut(),
-                )
-              ],
+        width: formSize(),
+        child: Container(
+          decoration: myBoxDecoration(),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 10,
+          ),
+          child: Form(
+            autovalidateMode: AutovalidateMode.disabled,
+            key: _formKey,
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 30,
+              ),
+              child: Column(
+                children: <Widget>[
+                  buildFirstName(),
+                  const SizedBox(height: 15),
+                  buildLastName(),
+                  const SizedBox(height: 15),
+                  buildPhone(),
+                  const SizedBox(height: 15),
+                  buildEmail(),
+                  const SizedBox(height: 15),
+                  buildLogin(),
+                  const SizedBox(height: 15),
+                  buildPasswd(),
+                  const SizedBox(height: 10),
+                  InkWell(
+                    onTap: () {
+                      final isValid = _formKey.currentState!.validate();
+                      if (isValid) {
+                        BlocProvider.of<RegisterCubit>(context)
+                            .RegisterUser(RegisterModel(
+                          login: loginController.text,
+                          passwd: passwdController.text,
+                          name: nameController.text,
+                          surname: surnameController.text,
+                          phone: phoneController.text,
+                          email: emailController.text,
+                        ));
+                      }
+                    },
+                    child: _addBut(),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ));
+      );
 
   Widget buildFirstName() => TextFormField(
         decoration: const InputDecoration(

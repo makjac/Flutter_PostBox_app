@@ -6,6 +6,8 @@ class UserSharedPreferences {
   static late SharedPreferences _preferences;
 
   static const _keyToken = 'token';
+  static const _keyLogin = 'login';
+  static const _keyEmail = 'email';
 
   static Future init() async =>
       _preferences = await SharedPreferences.getInstance();
@@ -14,4 +16,9 @@ class UserSharedPreferences {
       await _preferences.setString(_keyToken, token);
 
   static String? getToken() => _preferences.getString(_keyToken);
+
+  static Future setLogin(String login) async =>
+      await _preferences.setString(_keyLogin, login);
+
+  static String? getLogin() => _preferences.getString(_keyLogin);
 }

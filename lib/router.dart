@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:post_box/cubit/login_cubit.dart';
 import 'package:post_box/cubit/register_cubit.dart';
 import 'package:post_box/data/network_service.dart';
+import 'package:post_box/pages/editProfileScreen.dart';
 import 'package:post_box/pages/pages_base.dart';
 import 'package:post_box/constans/strings.dart';
 import 'package:post_box/cubit/showcase_cubit.dart';
@@ -40,6 +41,8 @@ class AppRouter {
                       ShowcaseCubit(repository: repository!),
                   child: ProfilePage(),
                 ));
+      case EDIT_PROFILE_ROUTE:
+        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       default:
         return null;
     }

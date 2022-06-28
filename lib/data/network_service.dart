@@ -34,6 +34,7 @@ class NetworkService {
       return response.statusCode;
     } catch (e) {
       await UserSharedPreferences.setToken("");
+      await UserSharedPreferences.setLogin("");
       return 0;
     }
   }
