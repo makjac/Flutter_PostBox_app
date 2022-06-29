@@ -1,4 +1,5 @@
 import 'package:post_box/data/models/parcel_showcase.dart';
+import 'package:post_box/data/models/postmachine_model.dart';
 import 'package:post_box/data/models/register_model.dart';
 import 'package:post_box/data/models/userShowcase.dart';
 import 'package:post_box/data/network_service.dart';
@@ -47,8 +48,35 @@ class Repository {
   }
 
   Future<List<ParcelShowcase>> fetchSendingParcels() async {
-    final incomParcelsRaw = await networkService.fetchSendingParcels();
+    final sendParcelsRaw = await networkService.fetchSendingParcels();
 
-    return incomParcelsRaw.map((e) => ParcelShowcase.fromMap(e)).toList();
+    return sendParcelsRaw.map((e) => ParcelShowcase.fromMap(e)).toList();
+  }
+
+  Future<List<PostMachine>> fetchPstmachines() async {
+    final postmachnesRaw = await networkService.fetchPstmachines();
+
+    return postmachnesRaw.map((e) => PostMachine.fromMap(e)).toList();
+  }
+
+  Future<int> createParcel(
+      String login, String parcelName, int rid, int sid) async {
+    final token = UserSharedPreferences.getToken();
+    final senderLogin = UserSharedPreferences.getLogin();
+    final parcelObj = {
+      "Authorization": "Bearer " + token!,
+      "sender_username": senderLogin!,
+      "receiver_username": login,
+      "receiver_pm_id": rid.toString(),
+      "sender_pm_id": sid.toString(),
+      "parcel_type": "1",
+      "parcel_name": parcelName
+    };
+    print(sid.toString());
+
+    int status = 0;
+    await networkService.createParcel(parcelObj).then((res) => status = res);
+
+    return status;
   }
 }

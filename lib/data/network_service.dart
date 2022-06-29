@@ -19,7 +19,6 @@ class NetworkService {
       await UserSharedPreferences.setLogin("");
       return 0;
     }
-    return 0;
   }
 
   Future<int> registerUser(Map<String, String> registerObj) async {
@@ -86,5 +85,30 @@ class NetworkService {
       return [];
     }
     return [];
+  }
+
+  Future<List<dynamic>> fetchPstmachines() async {
+    try {
+      final response = await http.get(Uri.parse(_baseUrl + "/postmachine"));
+
+      final res = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return res["data"];
+      }
+    } catch (e) {
+      return [];
+    }
+    return [];
+  }
+
+  Future<int> createParcel(Map<String, String> parcelObj) async {
+    try {
+      final response = await http.post(
+          Uri.parse(_baseUrl + "/api/parcels/create"),
+          headers: parcelObj);
+      return response.statusCode;
+    } catch (e) {
+      return 0;
+    }
   }
 }

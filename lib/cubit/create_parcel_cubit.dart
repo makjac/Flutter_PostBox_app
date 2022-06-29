@@ -1,29 +1,35 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:post_box/data/models/register_model.dart';
+import 'package:post_box/data/models/postmachine_model.dart';
 
 import 'package:post_box/data/repository.dart';
 
-part 'register_state.dart';
+part 'create_parcel_state.dart';
 
-class RegisterCubit extends Cubit<RegisterState> {
+class CreateParcelCubit extends Cubit<CreateParcelState> {
   final Repository repository;
-  RegisterCubit({
+  CreateParcelCubit({
     required this.repository,
-  }) : super(RegisterInitial());
+  }) : super(CreateParcelInitial());
 
-  void RegisterUser(RegisterModel form) {
-    emit(ProcessingRegister());
-    repository.registerUser(form).then((status) {
+  void fetchPstmachines() {
+    repository.fetchPstmachines().then((pm) {
+      emit(PostmachinesLoaded(postmachines: pm));
+    });
+  }
+
+  void createParcel(String login, String parcelName, int rid, int sid) {
+    emit(CreatingParcel());
+    repository.createParcel(login, parcelName, rid, sid).then((status) {
       switch (status) {
         case 200:
-          emit(Registered());
+          emit(Created());
           break;
         case 401:
           emit(InvalidResponse(
             title: "Wrong data",
-            body: "Opps... Wrong input data!",
+            body: "Opps... Wrong login or password!",
           ));
           break;
         case 521:

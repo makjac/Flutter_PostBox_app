@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:post_box/graphic/graphic_base.dart';
 import 'package:post_box/graphic/templates/logged_page_template.dart';
-import 'package:post_box/graphic/templates/page_template.dart';
 import 'package:post_box/utils/utils_base.dart';
 
 class EditProfileScreen extends StatelessWidget {

@@ -2,23 +2,23 @@
 part of 'incoming_parcels_cubit.dart';
 
 @immutable
-abstract class IncomingParcelsState {}
+abstract class ParcelsState {}
 
-class IncomingParcelsInitial extends IncomingParcelsState {}
+class IncomingParcelsInitial extends ParcelsState {}
 
-class IncomParcelsLoaded extends IncomingParcelsState {
+class IncomParcelsLoaded extends ParcelsState {
   final List<ParcelShowcase>? parcelSchowcase;
 
   IncomParcelsLoaded({this.parcelSchowcase});
 }
 
-class SendParcelsLoaded extends IncomingParcelsState {
+class SendParcelsLoaded extends ParcelsState {
   final List<ParcelShowcase>? sendParcelSchowcase;
 
   SendParcelsLoaded({this.sendParcelSchowcase});
 }
 
-class ParcelsLoaded extends IncomingParcelsState {
+class ParcelsLoaded extends ParcelsState {
   final List<ParcelShowcase>? incomParcelSchowcase;
   final List<ParcelShowcase>? sendParcelSchowcase;
   ParcelsLoaded({

@@ -1,6 +1,5 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:post_box/constans/colors.dart';
@@ -13,7 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<IncomingParcelsCubit>(context).fetchParcels();
+    BlocProvider.of<ParcelsCubit>(context).fetchParcels();
     //BlocProvider.of<IncomingParcelsCubit>(context).fetchSendingParcels();
 
     return HomePageTemplate(
@@ -25,8 +24,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget incomingPage() =>
-      BlocBuilder<IncomingParcelsCubit, IncomingParcelsState>(
+  Widget incomingPage() => BlocBuilder<ParcelsCubit, ParcelsState>(
         builder: (context, state) {
           if (state is! ParcelsLoaded) {
             return Center(
@@ -40,7 +38,7 @@ class HomeScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: incomParcelSchowcase
-                    .map((e) => _incomParcels(e, context))
+                    .map((e) => _incomParcels(e, context, "Sender", true))
                     .toList(),
               ),
             );
@@ -50,8 +48,7 @@ class HomeScreen extends StatelessWidget {
         },
       );
 
-  Widget sendingPage() =>
-      BlocBuilder<IncomingParcelsCubit, IncomingParcelsState>(
+  Widget sendingPage() => BlocBuilder<ParcelsCubit, ParcelsState>(
         builder: (context, state) {
           if (state is! ParcelsLoaded) {
             return Center(
@@ -65,7 +62,7 @@ class HomeScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: sendParcelSchowcase
-                    .map((e) => _incomParcels(e, context))
+                    .map((e) => _incomParcels(e, context, "Receiver", false))
                     .toList(),
               ),
             );
@@ -75,7 +72,8 @@ class HomeScreen extends StatelessWidget {
         },
       );
 
-  Widget _incomParcels(ParcelShowcase parcel, BuildContext context) {
+  Widget _incomParcels(ParcelShowcase parcel, BuildContext context,
+      String fromTo, bool isSender) {
     return Column(
       children: <Widget>[
         const SizedBox(height: 10),
@@ -117,14 +115,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("Sender", style: headerTextStyle()),
+                        Text(fromTo, style: headerTextStyle()),
                         const Spacer(),
                       ],
                     ),
                     Row(
                       children: [
                         Text(
-                          parcel.sender!,
+                          isSender ? parcel.sender! : parcel.receiver!,
                           style: bodyTextStyle(),
                         ),
                         const Spacer(),

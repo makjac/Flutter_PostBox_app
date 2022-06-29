@@ -19,6 +19,11 @@ class HomePageTemplate extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, CREATE_PARCEL_ROUTE),
+          child: const Icon(Icons.add),
+          backgroundColor: Colors.brown,
+        ),
         appBar: AppBar(
           bottom: const TabBar(
             tabs: [
