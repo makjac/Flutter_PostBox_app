@@ -11,7 +11,7 @@ class CreateParcelForm extends StatefulWidget {
   final List<PostMachine>? postmachines;
   final double size;
 
-  CreateParcelForm({this.size = 0, required this.postmachines, Key? key})
+  const CreateParcelForm({this.size = 0, required this.postmachines, Key? key})
       : super(key: key);
 
   @override

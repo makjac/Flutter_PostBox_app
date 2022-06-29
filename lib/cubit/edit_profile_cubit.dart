@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import 'package:post_box/data/repository.dart';
-import 'package:post_box/utils/utils_base.dart';
 
 part 'edit_profile_state.dart';
 

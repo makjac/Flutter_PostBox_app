@@ -116,13 +116,11 @@ class NetworkService {
     try {
       final response = await http.get(Uri.parse(_baseUrl + "/parcel/history"),
           headers: {"parcel_uuid": uuid});
-      print(response.body);
       final res = jsonDecode(response.body);
       if (response.statusCode == 200) {
         return res["data"];
       }
     } catch (e) {
-      print(e);
       return [];
     }
     return [];
@@ -133,13 +131,11 @@ class NetworkService {
       final response = await http.get(
           Uri.parse(_baseUrl + "/parcel/destination"),
           headers: {"puuid": uuid});
-      print(response.body);
       final res = jsonDecode(response.body);
       if (response.statusCode == 200) {
         return res["data"];
       }
     } catch (e) {
-      print(e);
       return [];
     }
     return [];
@@ -153,7 +149,6 @@ class NetworkService {
 
       return response.statusCode;
     } catch (e) {
-      print(e);
       return 0;
     }
   }

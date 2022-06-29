@@ -81,7 +81,6 @@ class Repository {
       "parcel_type": "1",
       "parcel_name": parcelName
     };
-    print(sid.toString());
 
     int status = 0;
     await networkService.createParcel(parcelObj).then((res) => status = res);

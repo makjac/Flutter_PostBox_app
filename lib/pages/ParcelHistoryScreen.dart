@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
+// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names, must_be_immutable
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
@@ -19,7 +19,6 @@ class ParcelHistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(uuid);
     BlocProvider.of<ParcelHistoryCubit>(context).fetchParcels(uuid!);
     return LoggedPageTemplate(
       title: "Parcel history",
@@ -44,7 +43,7 @@ class ParcelHistoryPage extends StatelessWidget {
       List<ParcelDestination>? parcelDestinationSchowcase) {
     return Column(
       children: [
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Container(
           decoration: _ParcelDestDecoration(),
           child: Column(
