@@ -6,4 +6,5 @@ const LOGIN_ROUTE = "/login";
 const REGISTER_ROUTE = "/register";
 const PROFILE_ROUTE = "/profile";
 const EDIT_PROFILE_ROUTE = "/profile/edit";
+const PARCEL_ROUTE = "/parcel";
 const CREATE_PARCEL_ROUTE = "/parcel/create";

@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:post_box/cubit/create_parcel_cubit.dart';
 import 'package:post_box/cubit/incoming_parcels_cubit.dart';
 import 'package:post_box/cubit/login_cubit.dart';
+import 'package:post_box/cubit/parcel_history_cubit.dart';
 import 'package:post_box/cubit/register_cubit.dart';
 import 'package:post_box/data/network_service.dart';
+import 'package:post_box/pages/ParcelHistoryScreen.dart';
 import 'package:post_box/pages/createParcelScreen.dart';
 import 'package:post_box/pages/editProfileScreen.dart';
 import 'package:post_box/pages/homeScreen.dart';
@@ -68,6 +70,13 @@ class AppRouter {
                   child: const CreateParcelPage(),
                 ));
 
+      case PARCEL_ROUTE:
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (BuildContext context) =>
+                      ParcelHistoryCubit(repository: repository!),
+                  child: ParcelHistoryPage(),
+                ));
       default:
         return null;
     }

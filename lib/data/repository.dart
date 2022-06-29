@@ -1,3 +1,5 @@
+import 'package:post_box/data/models/parcel_destination.dart';
+import 'package:post_box/data/models/parcel_history.dart';
 import 'package:post_box/data/models/parcel_showcase.dart';
 import 'package:post_box/data/models/postmachine_model.dart';
 import 'package:post_box/data/models/register_model.dart';
@@ -78,5 +80,17 @@ class Repository {
     await networkService.createParcel(parcelObj).then((res) => status = res);
 
     return status;
+  }
+
+  Future<List<ParcelHistory>> fetchParcelHistory(String uuid) async {
+    final postmachnesRaw = await networkService.fetchParcelHistory(uuid);
+
+    return postmachnesRaw.map((e) => ParcelHistory.fromMap(e)).toList();
+  }
+
+  Future<List<ParcelDestination>> fetchParcelDestination(String uuid) async {
+    final postmachnesRaw = await networkService.fetchParcelDestination(uuid);
+
+    return postmachnesRaw.map((e) => ParcelDestination.fromMap(e)).toList();
   }
 }

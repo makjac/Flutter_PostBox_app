@@ -48,7 +48,7 @@ class CreateParcelPage extends StatelessWidget {
             return Center(
               child: SingleChildScrollView(
                 child: SizedBox(
-                  height: 1000,
+                  height: 567,
                   child: CreateParcelForm(
                     postmachines: postmachines,
                     size: MediaQuery.of(context).size.width,

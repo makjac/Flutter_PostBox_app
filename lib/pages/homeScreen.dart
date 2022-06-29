@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:post_box/constans/colors.dart';
+import 'package:post_box/constans/strings.dart';
 import 'package:post_box/cubit/incoming_parcels_cubit.dart';
 import 'package:post_box/data/models/parcel_showcase.dart';
 import 'package:post_box/graphic/templates/home_page_template.dart';
+import 'package:post_box/utils/userSharedPreferences.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class HomeScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: incomParcelSchowcase
-                    .map((e) => _incomParcels(e, context, "Sender", true))
+                    .map((e) => _Parcels(e, context, "Sender", true))
                     .toList(),
               ),
             );
@@ -62,7 +64,7 @@ class HomeScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 children: sendParcelSchowcase
-                    .map((e) => _incomParcels(e, context, "Receiver", false))
+                    .map((e) => _Parcels(e, context, "Receiver", false))
                     .toList(),
               ),
             );
@@ -72,74 +74,104 @@ class HomeScreen extends StatelessWidget {
         },
       );
 
-  Widget _incomParcels(ParcelShowcase parcel, BuildContext context,
-      String fromTo, bool isSender) {
-    return Column(
-      children: <Widget>[
-        const SizedBox(height: 10),
-        Container(
-          decoration: ParcelDecoration(),
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Text(
-                          "Parcel num",
-                          style: headerTextStyle(),
-                        ),
-                        const Spacer(),
-                        const Icon(Icons.rectangle_outlined)
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Text(
-                          parcel.parcelNum!,
-                          style: bodyTextStyle(),
-                        ),
-                        const Spacer(),
-                      ],
-                    ),
-                  ],
+  Widget _Parcels(ParcelShowcase parcel, BuildContext context, String fromTo,
+      bool isSender) {
+    return InkWell(
+      onTap: () {
+        UserSharedPreferences.setParcelUuid(parcel.parcelNum!);
+        Navigator.pushNamed(context, PARCEL_ROUTE);
+      },
+      child: Column(
+        children: <Widget>[
+          const SizedBox(height: 10),
+          Container(
+            decoration: ParcelDecoration(),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text(
+                            "Parcel num",
+                            style: headerTextStyle(),
+                          ),
+                          const Spacer(),
+                          const Icon(Icons.rectangle_outlined)
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            parcel.parcelNum!,
+                            style: bodyTextStyle(),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(fromTo, style: headerTextStyle()),
-                        const Spacer(),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          isSender ? parcel.sender! : parcel.receiver!,
-                          style: bodyTextStyle(),
-                        ),
-                        const Spacer(),
-                        Text(
-                          "more",
-                          style: bodyTextStyle(),
-                        ),
-                        const Icon(Icons.arrow_right_alt_rounded),
-                      ],
-                    )
-                  ],
+                const SizedBox(height: 10),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text("Parcel name", style: headerTextStyle()),
+                          const Spacer(),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            parcel.parcelName!,
+                            style: bodyTextStyle(),
+                          ),
+                          const Spacer(),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Text(fromTo, style: headerTextStyle()),
+                          const Spacer(),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            isSender ? parcel.sender! : parcel.receiver!,
+                            style: bodyTextStyle(),
+                          ),
+                          const Spacer(),
+                          Text(
+                            "more",
+                            style: bodyTextStyle(),
+                          ),
+                          const Icon(Icons.arrow_right_alt_rounded),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

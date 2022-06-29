@@ -111,4 +111,37 @@ class NetworkService {
       return 0;
     }
   }
+
+  Future<List<dynamic>> fetchParcelHistory(String uuid) async {
+    try {
+      final response = await http.get(Uri.parse(_baseUrl + "/parcel/history"),
+          headers: {"parcel_uuid": uuid});
+      print(response.body);
+      final res = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return res["data"];
+      }
+    } catch (e) {
+      print(e);
+      return [];
+    }
+    return [];
+  }
+
+  Future<List<dynamic>> fetchParcelDestination(String uuid) async {
+    try {
+      final response = await http.get(
+          Uri.parse(_baseUrl + "/parcel/destination"),
+          headers: {"puuid": uuid});
+      print(response.body);
+      final res = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        return res["data"];
+      }
+    } catch (e) {
+      print(e);
+      return [];
+    }
+    return [];
+  }
 }
