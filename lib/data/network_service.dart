@@ -144,4 +144,17 @@ class NetworkService {
     }
     return [];
   }
+
+  Future<int> updatePrifile(Map<String, String> profileObj) async {
+    try {
+      final response = await http.post(
+          Uri.parse(_baseUrl + "/api/showcase/update"),
+          headers: profileObj);
+
+      return response.statusCode;
+    } catch (e) {
+      print(e);
+      return 0;
+    }
+  }
 }

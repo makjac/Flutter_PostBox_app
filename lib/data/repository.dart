@@ -40,7 +40,14 @@ class Repository {
   Future<List<UserShowcase>> fetchShowcase() async {
     final showcaseRaw = await networkService.fetchShowcase();
 
-    return showcaseRaw.map((e) => UserShowcase.fromMap(e)).toList();
+    return showcaseRaw.map((e) {
+      final showcase = UserShowcase.fromMap(e);
+      UserSharedPreferences.setName(showcase.firstName!.trim());
+      UserSharedPreferences.setSurname(showcase.surname!.trim());
+      UserSharedPreferences.setPhone(showcase.phone!.trim());
+      UserSharedPreferences.setEmail(showcase.email!.trim());
+      return showcase;
+    }).toList();
   }
 
   Future<List<ParcelShowcase>> fetchIncomingParcels() async {
@@ -92,5 +99,23 @@ class Repository {
     final postmachnesRaw = await networkService.fetchParcelDestination(uuid);
 
     return postmachnesRaw.map((e) => ParcelDestination.fromMap(e)).toList();
+  }
+
+  Future<int> updatePrifile(int usrID, String name, String surname,
+      String phone, String email) async {
+    final token = UserSharedPreferences.getToken();
+    final profileObj = {
+      'Authorization': "Bearer " + token!,
+      'usrID': usrID.toString(),
+      'name': name,
+      'surname': surname,
+      'phone': phone,
+      'email': email,
+    };
+
+    int status = 0;
+    await networkService.updatePrifile(profileObj).then((res) => status = res);
+
+    return status;
   }
 }

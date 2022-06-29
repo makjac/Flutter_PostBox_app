@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:post_box/cubit/create_parcel_cubit.dart';
+import 'package:post_box/cubit/edit_profile_cubit.dart';
 import 'package:post_box/cubit/incoming_parcels_cubit.dart';
 import 'package:post_box/cubit/login_cubit.dart';
 import 'package:post_box/cubit/parcel_history_cubit.dart';
@@ -60,7 +61,12 @@ class AppRouter {
                 ));
 
       case EDIT_PROFILE_ROUTE:
-        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (BuildContext context) =>
+                      EditProfileCubit(repository: repository!),
+                  child: const EditProfileScreen(),
+                ));
 
       case CREATE_PARCEL_ROUTE:
         return MaterialPageRoute(
