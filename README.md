@@ -1,16 +1,40 @@
-# post_box
 
-A new Flutter project.
+![Header](https://i.imgur.com/BJaItEK.png)
+# introduction
 
-## Getting Started
+### Topic
 
-This project is a starting point for a Flutter application.
+This is a project for an imaginary courier company. PostBox Is a company that provides courier services using parcel machines. The idea is based on the Inpost company. 
 
-A few resources to get you started if this is your first Flutter project:
+The application was created just for customers. It is supposed to allow him:
+* to set up/log in an account, 
+* order a package, 
+* view the list of incoming/shipped packages, 
+* see the history of selected packages, 
+* view/edit his profile.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## architekture
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+For this purpose, I created:
+* database in Postgres
+* api in Golang using gin-gonic and go-pg packages
+* user interface using Dart language and Flutter framework.
+
+The application was hosted on Google Cloud Platform, sending emails was done using Mailjet platform
+
+![architekture](https://i.imgur.com/pQgaNFm.png)
+
+## repositories
+
+* [Flutter user interface](https://github.com/makjac/Flutter_PostBox_app)
+* [Golang api](https://github.com/makjac/Golang_PostBox_api)
+## Used Packages
+
+* **http**
+
+    To communicate with the api using http requests.
+* **flutter_bloc**
+
+    Bloc architecture to make HTTP request.
+* **shared_preferences**
+* **form_validator**
