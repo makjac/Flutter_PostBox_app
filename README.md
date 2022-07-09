@@ -20,7 +20,7 @@ For this purpose, I created:
 * api in Golang using gin-gonic and go-pg packages
 * user interface using Dart language and Flutter framework.
 
-The application was hosted on Google Cloud Platform, sending emails was done using Mailjet platform
+The application server was hosted on Google Cloud Platform, sending emails was done using Mailjet platform
 
 ![architekture](https://i.imgur.com/pQgaNFm.png)
 
