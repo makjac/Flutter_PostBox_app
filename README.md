@@ -39,7 +39,7 @@ The application server was hosted on Google Cloud Platform, sending emails was d
 * **shared_preferences**
 * **form_validator**
 
-##Example Screenshots
+## Example Screenshots
 
 [link to Youtube video](https://www.youtube.com/watch?v=tZ9cyRZ0VjE)
 
