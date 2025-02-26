@@ -1,50 +1,70 @@
+![header_image][header_image_url]
 
-![Header](https://i.imgur.com/BJaItEK.png)
-# introduction
+[![Flutter][flutter_badge]][flutter_url]
+[![Dart][dart_badge]][dart_url]
 
-### Topic
+# PostBox Courier Platform App
 
-This is a project for an imaginary courier company. PostBox Is a company that provides courier services using parcel machines. The idea is based on the Inpost company. 
+**Frontend application for a digital parcel management platform**  
 
-The application was created just for customers. It is supposed to allow him:
-* to set up/log in an account, 
-* order a package, 
-* view the list of incoming/shipped packages, 
-* see the history of selected packages, 
-* view/edit his profile.
+*Built with Flutter - Connects to the PostBox Golang API*
 
-## architekture
+## Overview
 
-For this purpose, I created:
-* database in Postgres
-* api in Golang using gin-gonic and go-pg packages
-* user interface using Dart language and Flutter framework.
+This repository contains the **frontend application** for the PostBox platform, a digital solution for automated parcel management inspired by InPost's locker systems. The app is built with **Flutter** and provides a user-friendly interface for interacting with the [PostBox Golang API](https://github.com/makjac/Golang_PostBox_api), enabling users to manage parcels, track deliveries, and handle their profiles.
 
-The application server was hosted on Google Cloud Platform, sending emails was done using Mailjet platform
+## Key Features
 
-![architekture](https://i.imgur.com/pQgaNFm.png)
+### User Profile Management
+- **Authentication**:
+  - JWT-based registration and login
+  - Email verification for account activation
+- **Contact Details**:
+  - Update phone number and email
+  - Manage multiple contact addresses
+- **Address Book**:
+  - Add, edit, or delete delivery addresses
 
-## repositories
+### Parcel Management
+- **Package Tracking**:
+  - Real-time package location updates
+- **Shipment Analytics**:
+  - Historical shipment data
 
-* [Flutter user interface](https://github.com/makjac/Flutter_PostBox_app)
-* [Golang api](https://github.com/makjac/Golang_PostBox_api)
-## Used Packages
+## Technical Architecture
 
-* **http**
+### System Overview
 
-    To communicate with the api using http requests.
-* **flutter_bloc**
+![architecture_image][architecture_image_url]
 
-    Bloc architecture to make HTTP request.
-* **shared_preferences**
-* **form_validator**
+### Core Components
 
-## Example Screenshots
+| Layer                | Technology Stack                                        |
+|----------------------|---------------------------------------------------------|
+| **Frontend**         | Flutter (Dart >=2.17.0 <3.0.0, Flutter >=3.0.0)         |
+| **State Management** | BLoC Pattern                                            |
+| **Backend**          | [PostBox Golang API](https://github.com/makjac/PBB-api) |
 
-[link to Youtube video](https://www.youtube.com/watch?v=tZ9cyRZ0VjE)
+## Screenshots
 
-![image 1](https://i.imgur.com/P94pSLH.jpg)
-![image2](https://i.imgur.com/F6hvLKf.jpg)
-![image3](https://i.imgur.com/vFh7nKq.jpg)
-![image4](https://i.imgur.com/qVf1BTF.jpg)
-![image5](https://i.imgur.com/yFSOMuf.jpg)
+![Screenshot 0][screenshot_0_url]
+![Screenshot 1][screenshot_1_url]
+![Screenshot 2][screenshot_2_url]
+![Screenshot 3][screenshot_3_url]
+![Screenshot 4][screenshot_4_url]
+
+<!-- end:excluded_rules_table -->
+
+[header_image_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/postbox/postbox_flutter_header.png
+[architecture_image_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/postbox/postbox_architecture.png
+
+[screenshot_0_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/postbox/postbox_screenshot_0.jpeg
+[screenshot_1_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/postbox/postbox_screenshot_1.jpeg
+[screenshot_2_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/postbox/postbox_screenshot_2.jpeg
+[screenshot_3_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/postbox/postbox_screenshot_3.jpeg
+[screenshot_4_url]: https://raw.githubusercontent.com/makjac/images/refs/heads/main/postbox/postbox_screenshot_4.jpeg
+
+[flutter_badge]: https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter
+[flutter_url]: https://flutter.dev
+[dart_badge]: https://img.shields.io/badge/Dart-%3E%3D2.17.0%20%3C3.0.0-blue?logo=dart
+[dart_url]: https://dart.dev
